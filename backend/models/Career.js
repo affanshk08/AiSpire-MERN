@@ -11,12 +11,16 @@ const careerSchema = new mongoose.Schema({
   },
   averageSalary: {
     type: Number,
+    required: true,
   },
   requiredEducation: {
     type: String,
+    required: true,
   },
-  skills: [String],
-  relatedFields: [String],
+  skills: {
+    type: [String],
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Career', careerSchema);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// This API_URL uses the proxy in package.json to talk to your Node.js backend
+// This URL uses the proxy in package.json to talk to your Node.js backend
 const API_URL = '/api/auth/';
 
 // Register user

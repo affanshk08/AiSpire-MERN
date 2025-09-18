@@ -12,12 +12,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// This line is the most important part for fixing the 404 error
+// API Routes
 app.use('/api/auth', require('./routes/authRoutes'));
-
-// Make sure other routes are correct too, if you have them
 app.use('/api/careers', require('./routes/careerRoutes')); 
 
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+app.listen(port, () => console.log(`Server started on port ${port}`.cyan.underline));

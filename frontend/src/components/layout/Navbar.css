@@ -47,8 +47,8 @@
   cursor: pointer;
   border: none;
   transition: all 0.2s ease-in-out;
-  font-family: 'Satoshi', sans-serif; /* Ensures button font matches */
-  font-size: 1rem; /* Ensures button font size is correct */
+  font-family: 'Satoshi', sans-serif;
+  font-size: 1rem;
 }
 
 .login-button {
@@ -63,4 +63,16 @@
 
 .nav-button:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-auth .login-button {
+    display: none;
+  }
 }

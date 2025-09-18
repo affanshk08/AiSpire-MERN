@@ -40,7 +40,7 @@
 }
 
 .detail-card .salary {
-  color: #16a34a; /* A nice green for salary */
+  color: #16a34a;
 }
 
 .skills-section h3 {
@@ -59,4 +59,13 @@
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  .career-title {
+    font-size: 3rem;
+  }
 }

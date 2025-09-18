@@ -8,7 +8,7 @@ import Assessments from './pages/Assessments';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import Profile from './pages/Profile';
-import CareerDetails from './pages/CareerDetails'; // Import the new details page
+import CareerDetails from './pages/CareerDetails';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -29,38 +29,10 @@ function App() {
             <Route path="/signup" element={<Signup />} />
 
             {/* Protected Routes */}
-            <Route
-              path="/careers"
-              element={
-                <ProtectedRoute>
-                  <Careers />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/careers/:id"
-              element={
-                <ProtectedRoute>
-                  <CareerDetails />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/assessments"
-              element={
-                <ProtectedRoute>
-                  <Assessments />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/careers" element={<ProtectedRoute><Careers /></ProtectedRoute>} />
+            <Route path="/careers/:id" element={<ProtectedRoute><CareerDetails /></ProtectedRoute>} />
+            <Route path="/assessments" element={<ProtectedRoute><Assessments /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           </Routes>
         </main>
         <Footer />

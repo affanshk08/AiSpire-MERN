@@ -16,32 +16,22 @@ const Navbar = () => {
 
   const authLinks = (
     <div className="nav-auth">
-      <Link to="/profile" className="nav-button login-button">
-        Profile
-      </Link>
-      <button onClick={onLogout} className="nav-button signup-button">
-        Logout
-      </button>
+      <Link to="/profile" className="nav-button login-button">Profile</Link>
+      <button onClick={onLogout} className="nav-button signup-button">Logout</button>
     </div>
   );
 
   const guestLinks = (
     <div className="nav-auth">
-      <Link to="/login" className="nav-button login-button">
-        Login
-      </Link>
-      <Link to="/signup" className="nav-button signup-button">
-        Sign Up Free
-      </Link>
+      <Link to="/login" className="nav-button login-button">Login</Link>
+      <Link to="/signup" className="nav-button signup-button">Sign Up Free</Link>
     </div>
   );
 
   return (
     <header className="header">
       <nav className="navbar container">
-        <Link to="/" className="nav-logo">
-          CareerCounsel
-        </Link>
+        <Link to="/" className="nav-logo">AiSpire</Link>
         <ul className="nav-menu">
           <li><NavLink to="/careers">Careers</NavLink></li>
           <li><NavLink to="/assessments">Assessments</NavLink></li>

@@ -21,14 +21,14 @@
 .card-description {
   color: var(--grey);
   margin-bottom: 2rem;
-  flex-grow: 1; /* Pushes footer to the bottom */
+  flex-grow: 1;
 }
 
 .card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto; /* Pushes footer to the bottom */
+  margin-top: auto;
 }
 
 .card-salary {
@@ -44,10 +44,10 @@
   border: 1px solid var(--black);
   color: var(--black);
   transition: all 0.2s ease-in-out;
-  white-space: nowrap; /* Ensures text is on one line */
+  white-space: nowrap;
 }
 
 .card-link:hover {
-    background-color: var(--black);
-    color: var(--white);
+  background-color: var(--black);
+  color: var(--white);
 }

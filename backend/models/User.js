@@ -1,42 +1,24 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Please add a name'],
-  },
-  email: {
-    type: String,
-    required: [true, 'Please add an email'],
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: [true, 'Please add a password'],
-  },
-  role: {
-    type: String,
-    enum: ['user', 'counselor', 'admin'],
-    default: 'user',
-  },
-  assessments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Assessment',
+const userSchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'Please add a name'],
     },
-  ],
-  savedCareers: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Career',
+    email: {
+      type: String,
+      required: [true, 'Please add an email'],
+      unique: true,
     },
-  ],
-  appointments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Appointment',
+    password: {
+      type: String,
+      required: [true, 'Please add a password'],
     },
-  ],
-});
+  },
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model('User', userSchema);

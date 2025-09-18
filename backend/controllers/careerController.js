@@ -1,8 +1,5 @@
 const Career = require('../models/Career');
 
-// @desc    Add a new career (for seeding data)
-// @route   POST /api/careers
-// @access  Private (or public for seeding, depending on your needs)
 const addCareer = async (req, res) => {
     try {
         const career = new Career(req.body);
@@ -13,9 +10,6 @@ const addCareer = async (req, res) => {
     }
 };
 
-// @desc    Get all careers
-// @route   GET /api/careers
-// @access  Public
 const getCareers = async (req, res) => {
   try {
     const careers = await Career.find({});
@@ -25,9 +19,6 @@ const getCareers = async (req, res) => {
   }
 };
 
-// @desc    Get a single career by ID
-// @route   GET /api/careers/:id
-// @access  Public
 const getCareerById = async (req, res) => {
   try {
     const career = await Career.findById(req.params.id);
