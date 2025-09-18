@@ -9,7 +9,6 @@ const CareerCard = ({ career }) => {
       <p className="card-description">{career.description}</p>
       <div className="card-footer">
         <span className="card-salary">
-          {/* Corrected Symbol and Formatting */}
           ~₹{career.averageSalary.toLocaleString('en-IN')}/yr
         </span>
         <Link to={`/careers/${career._id}`} className="card-link">

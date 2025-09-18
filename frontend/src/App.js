@@ -8,7 +8,7 @@ import Assessments from './pages/Assessments';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import Profile from './pages/Profile';
-import CareerDetails from './pages/CareerDetails'; // The new details page
+import CareerDetails from './pages/CareerDetails'; // Import the new details page
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -38,7 +38,7 @@ function App() {
               }
             />
             <Route
-              path="/careers/:id" // This route was added
+              path="/careers/:id"
               element={
                 <ProtectedRoute>
                   <CareerDetails />

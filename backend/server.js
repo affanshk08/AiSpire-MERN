@@ -1,32 +1,23 @@
 const express = require('express');
-const dotenv = require('dotenv');
+const colors = require('colors');
+const dotenv = require('dotenv').config();
+const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
-const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+const port = process.env.PORT || 5000;
 
-// Route Files
-const assessmentRoutes = require('./routes/assessmentRoutes');
-const careerRoutes = require('./routes/careerRoutes');
-const appointmentRoutes = require('./routes/appointmentRoutes');
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
-
-dotenv.config();
 connectDB();
 
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-// Mount routers
-app.use('/api/assessments', assessmentRoutes);
-app.use('/api/careers', careerRoutes);
-app.use('/api/appointments', appointmentRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
+// This line is the most important part for fixing the 404 error
+app.use('/api/auth', require('./routes/authRoutes'));
 
-app.use(notFound);
+// Make sure other routes are correct too, if you have them
+app.use('/api/careers', require('./routes/careerRoutes')); 
+
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, console.log(`Server running on port ${PORT}`));
+app.listen(port, () => console.log(`Server started on port ${port}`));

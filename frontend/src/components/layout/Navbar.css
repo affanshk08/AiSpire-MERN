@@ -47,16 +47,12 @@
   cursor: pointer;
   border: none;
   transition: all 0.2s ease-in-out;
+  font-family: 'Satoshi', sans-serif; /* Ensures button font matches */
+  font-size: 1rem; /* Ensures button font size is correct */
 }
 
 .login-button {
   background: transparent;
-  color: var(--black);
-}
-
-.logout-button {
-  background: transparent;
-  font-size: 1rem;
   color: var(--black);
 }
 

@@ -40,7 +40,7 @@ const Navbar = () => {
     <header className="header">
       <nav className="navbar container">
         <Link to="/" className="nav-logo">
-          AiSpire
+          CareerCounsel
         </Link>
         <ul className="nav-menu">
           <li><NavLink to="/careers">Careers</NavLink></li>

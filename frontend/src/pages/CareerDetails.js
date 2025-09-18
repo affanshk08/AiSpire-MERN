@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import careerService from '../services/careerService'; // We'll create this next
+import careerService from '../services/careerService';
 import './CareerDetails.css';
 
 const CareerDetails = () => {
   const [career, setCareer] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { id } = useParams(); // Gets the career ID from the URL
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchCareer = async () => {
@@ -39,6 +39,7 @@ const CareerDetails = () => {
       <div className="details-grid">
         <div className="detail-card">
           <h3>Average Salary</h3>
+          {/* Corrected Symbol and Formatting */}
           <p className="salary">₹{career.averageSalary.toLocaleString('en-IN')}/yr</p>
         </div>
         <div className="detail-card">
