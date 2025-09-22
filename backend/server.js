@@ -14,7 +14,12 @@ app.use(express.urlencoded({ extended: false }));
 
 // API Routes
 app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/careers', require('./routes/careerRoutes')); 
+app.use('/api/careers', require('./routes/careerRoutes'));
+app.use('/api/appointments', require('./routes/appointmentRoutes'));
+app.use('/api/colleges', require('./routes/collegeRoutes'));
+app.use('/api/contact', require('./routes/contactRoutes'));
+app.use('/api/payment', require('./routes/paymentRoutes'));
+app.use('/api/admin', require('./routes/adminRoutes'));
 
 app.use(errorHandler);
 

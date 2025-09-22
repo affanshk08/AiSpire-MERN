@@ -12,6 +12,10 @@ import CareerDetails from './pages/CareerDetails';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import AdminRoute from './components/auth/AdminRoute';
+import Appointments from './pages/Appointments';
+import Colleges from './pages/Colleges';
+import AdminDashboard from './pages/AdminDashboard';
 import './App.css';
 
 function App() {
@@ -33,6 +37,11 @@ function App() {
             <Route path="/careers/:id" element={<ProtectedRoute><CareerDetails /></ProtectedRoute>} />
             <Route path="/assessments" element={<ProtectedRoute><Assessments /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/appointments" element={<ProtectedRoute><Appointments /></ProtectedRoute>} />
+            <Route path="/colleges" element={<ProtectedRoute><Colleges /></ProtectedRoute>} />
+
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
           </Routes>
         </main>
         <Footer />
