@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import './Appointments.css';
 
@@ -8,16 +8,31 @@ const Appointments = () => {
   const [counselor, setCounselor] = useState('');
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [message, setMessage] = useState('');
-  const { token } = useContext(AuthContext);
+  const { user } = useContext(AuthContext); // Access the user object, not the token directly
+
+  useEffect(() => {
+    // Check if a user exists and has a token on component mount
+    if (user && user.token) {
+      setMessage(''); // Clear any previous error messages
+    } else {
+      setMessage('Please log in to make a payment.');
+    }
+  }, [user]);
 
   const handlePayment = async () => {
+    // Correctly access the token from the user object
+    if (!user || !user.token) {
+      setMessage('Please log in to make a payment.');
+      return;
+    }
+
     setMessage('Processing payment...');
     try {
       const res = await fetch('/api/payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${user.token}`, // Use the token from the user object
         },
       });
 
@@ -38,13 +53,14 @@ const Appointments = () => {
       setMessage('Please complete the payment first.');
       return;
     }
+
     setMessage('Booking appointment...');
     try {
       const res = await fetch('/api/appointments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${user.token}`, // Use the token from the user object
         },
         body: JSON.stringify({ date, time, counselor }),
       });
