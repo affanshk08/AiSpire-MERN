@@ -1,6 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-// We can add more user-specific controller functions here later
-// For now, authController's getMe is sufficient for profile fetching.
+import { getUsers } from '../controllers/userController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
-module.exports = router;
+router.route('/').get(protect, getUsers);
+
+export default router;

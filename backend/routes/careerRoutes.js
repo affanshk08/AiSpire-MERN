@@ -1,12 +1,19 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const {
-  addCareer,
+import {
   getCareers,
   getCareerById,
-} = require('../controllers/careerController');
+  createCareer,
+  updateCareer,
+  deleteCareer,
+} from '../controllers/careerController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
-router.route('/').get(getCareers).post(addCareer);
-router.route('/:id').get(getCareerById);
+router.route('/').get(getCareers).post(protect, createCareer);
+router
+  .route('/:id')
+  .get(getCareerById)
+  .put(protect, updateCareer)
+  .delete(protect, deleteCareer);
 
-module.exports = router;
+export default router;

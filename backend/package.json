@@ -1,12 +1,16 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Backend for CareerCounsel App",
+  "description": "Aispire backend",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "data:import": "node seeder.js",
+    "data:destroy": "node seeder.js -d"
   },
+  
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {

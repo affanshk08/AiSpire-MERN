@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
-const asyncHandler = require('express-async-handler');
-const User = require('../models/User');
+import jwt from 'jsonwebtoken';
+import asyncHandler from 'express-async-handler';
+import User from '../models/User.js';
 
 const protect = asyncHandler(async (req, res, next) => {
   let token;
@@ -17,7 +17,7 @@ const protect = asyncHandler(async (req, res, next) => {
     } catch (error) {
       console.error(error);
       res.status(401);
-      throw new Error('Not authorized');
+      throw new Error('Not authorized, token failed');
     }
   }
 
@@ -27,4 +27,5 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = { protect };
+// Use modern ES Module export syntax
+export { protect };

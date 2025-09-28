@@ -1,13 +1,14 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const {
-  getAppointments,
-  bookAppointment,
-  cancelAppointment,
-} = require('../controllers/appointmentController');
-const { protect } = require('../middleware/authMiddleware');
+import {
+  createAppointment,
+  getUserAppointments,
+  getAllAppointments,
+} from '../controllers/appointmentController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
-router.route('/').get(protect, getAppointments).post(protect, bookAppointment);
-router.route('/:id').delete(protect, cancelAppointment);
+router.route('/').post(protect, createAppointment);
+router.route('/myappointments').get(protect, getUserAppointments);
+router.route('/all').get(protect, getAllAppointments); // New route for admins
 
-module.exports = router;
+export default router;

@@ -1,37 +1,46 @@
-.header {
-  background-color: var(--white);
-  border-bottom: 1px solid var(--off-white);
-  padding: 1.5rem 0;
+.navbar {
+  background-color: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.navbar {
+.nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .nav-logo {
+  font-size: 1.8rem;
   font-weight: 700;
-  font-size: 1.5rem;
+  color: #000;
+  text-decoration: none;
 }
 
 .nav-menu {
-  display: flex;
   list-style: none;
+  display: flex;
   gap: 2rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: #555;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.nav-menu a {
-  transition: color 0.2s ease-in-out;
-}
-
-.nav-menu a:hover,
-.nav-menu a.active {
-  color: var(--grey);
+.nav-menu li a:hover {
+  color: #000;
 }
 
 .nav-auth {
@@ -40,39 +49,41 @@
   gap: 1rem;
 }
 
-.nav-button {
-  padding: 0.75rem 1.5rem;
+/* Base styles for all buttons in the auth section */
+.nav-auth .btn {
+  padding: 0.5rem 1.2rem;
   border-radius: 8px;
-  font-weight: 500;
   cursor: pointer;
-  border: none;
-  transition: all 0.2s ease-in-out;
-  font-family: 'Satoshi', sans-serif;
+  text-decoration: none;
   font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
 }
 
-.login-button {
-  background: transparent;
-  color: var(--black);
+/* --- PRECISE BUTTON STYLES FROM YOUR SCREENSHOT --- */
+
+/* 1. Profile Button: Black text/border, white background */
+.nav-auth .btn-profile {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
 }
 
-.signup-button {
-  background-color: var(--black);
-  color: var(--white);
+/* Profile Button Hover: Black background, white text */
+.nav-auth .btn-profile:hover {
+  background-color: #000;
+  color: #fff;
 }
 
-.nav-button:hover {
-  opacity: 0.8;
+/* 2. Logout Button: Black background, white text */
+.nav-auth .btn-logout {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #000;
 }
 
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-auth .login-button {
-    display: none;
-  }
+/* Logout Button Hover: Dark grey background */
+.nav-auth .btn-logout:hover {
+  background-color: #333;
+  border-color: #333;
 }

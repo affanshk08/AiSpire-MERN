@@ -1,53 +1,77 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import authService from '../../services/authService';
 import { AuthContext } from '../../context/AuthContext';
+import authService from '../../services/authService';
 import './Auth.css';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState(null); // Add state for error messages
-  const { email, password } = formData;
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+  const [error, setError] = useState('');
+  const { login: contextLogin } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { dispatch } = useContext(AuthContext);
 
-  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const { email, password } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setError(null); // Clear previous errors
+    setError('');
     try {
-      const user = await authService.login({ email, password });
-      dispatch({ type: 'LOGIN', payload: user });
+      const userData = await authService.login({ email, password });
+      contextLogin(userData);
+      // This will now work correctly because the app knows the user is logged in
       navigate('/careers');
     } catch (err) {
-      // Set the error message from the server's response
-      setError(err.response.data.message || 'Something went wrong');
-      console.error('Login failed', err);
+      setError(err.message || 'An unknown error occurred.');
     }
   };
 
   return (
-    <div className="auth-page">
-      <h2>Welcome Back</h2>
-      <p>Enter your credentials to access your account.</p>
-      
-      {/* Conditionally display the error message */}
-      {error && <div className="error-message">{error}</div>}
-
-      <form onSubmit={onSubmit} className="auth-form">
-        <div className="form-group">
-          <label>Email</label>
-          <input type="email" name="email" value={email} onChange={onChange} required />
+    <div className="auth-container">
+      <div className="auth-card">
+        <h1>Login</h1>
+        <p>Access your Aispire account</p>
+        {error && <div className="error-message">{error}</div>}
+        <form onSubmit={onSubmit} autoComplete="off">
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+              required
+              autoComplete="off"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={onChange}
+              minLength="6"
+              required
+              autoComplete="new-password"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary btn-block">
+            Login
+          </button>
+        </form>
+        <div className="auth-footer">
+          <p>
+            Don't have an account? <Link to="/signup">Sign Up</Link>
+          </p>
         </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input type="password" name="password" value={password} onChange={onChange} required />
-        </div>
-        <button type="submit" className="btn-submit">Login</button>
-      </form>
-      <div className="auth-switch">
-        Don't have an account? <Link to="/signup">Sign Up</Link>
       </div>
     </div>
   );

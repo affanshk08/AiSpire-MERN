@@ -1,28 +1,33 @@
-const Assessment = require('../models/Assessment');
+import asyncHandler from 'express-async-handler';
+import Assessment from '../models/Assessment.js'; // Default import se match karein
+import User from '../models/User.js';
 
-// @desc    Get all assessments for a user
-// @route   GET /api/assessments
-// @access  Private
-const getAssessments = async (req, res) => {
-  res.status(200).json({ message: 'Get assessments' });
-};
+const getAssessments = asyncHandler(async (req, res) => {
+  const assessments = await Assessment.find({});
+  res.json(assessments);
+});
 
-// @desc    Take a new assessment
-// @route   POST /api/assessments
-// @access  Private
-const takeAssessment = async (req, res) => {
-  res.status(201).json({ message: 'Take assessment' });
-};
+const getAssessmentById = asyncHandler(async (req, res) => {
+  const assessment = await Assessment.findById(req.params.id);
 
-// @desc    Get assessment results
-// @route   GET /api/assessments/:id/result
-// @access  Private
-const getAssessmentResult = async (req, res) => {
-  res.status(200).json({ message: `Get result for assessment ${req.params.id}` });
-};
+  if (assessment) {
+    res.json(assessment);
+  } else {
+    res.status(404);
+    throw new Error('Assessment not found');
+  }
+});
 
-module.exports = {
-  getAssessments,
-  takeAssessment,
-  getAssessmentResult,
-};
+const submitAssessment = asyncHandler(async (req, res) => {
+  const { answers } = req.body;
+  const assessment = await Assessment.findById(req.params.id);
+
+  if (assessment) {
+    res.status(200).json({ message: 'Assessment submitted successfully.' });
+  } else {
+    res.status(404);
+    throw new Error('Assessment not found');
+  }
+});
+
+export { getAssessments, getAssessmentById, submitAssessment };

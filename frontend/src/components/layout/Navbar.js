@@ -1,45 +1,49 @@
 import React, { useContext } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import authService from '../../services/authService';
 import './Navbar.css';
 
 const Navbar = () => {
-  const { isAuthenticated, dispatch } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const onLogout = () => {
-    authService.logout();
-    dispatch({ type: 'LOGOUT' });
-    navigate('/login');
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
-  const authLinks = (
-    <div className="nav-auth">
-      <Link to="/profile" className="nav-button login-button">Profile</Link>
-      <button onClick={onLogout} className="nav-button signup-button">Logout</button>
-    </div>
-  );
-
-  const guestLinks = (
-    <div className="nav-auth">
-      <Link to="/login" className="nav-button login-button">Login</Link>
-      <Link to="/signup" className="nav-button signup-button">Sign Up Free</Link>
-    </div>
-  );
-
   return (
-    <header className="header">
-      <nav className="navbar container">
-        <Link to="/" className="nav-logo">AiSpire</Link>
+    <nav className="navbar">
+      <div className="container nav-container">
+        <Link to="/" className="nav-logo">
+          Aispire
+        </Link>
         <ul className="nav-menu">
-          <li><NavLink to="/careers">Careers</NavLink></li>
-          <li><NavLink to="/assessments">Assessments</NavLink></li>
-          <li><NavLink to="/about">About</NavLink></li>
+          <li><Link to="/careers">Careers</Link></li>
+          <li><Link to="/assessments">Assessments</Link></li>
+          {user && <li><Link to="/appointment">Book Appointment</Link></li>}
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
-        {isAuthenticated ? authLinks : guestLinks}
-      </nav>
-    </header>
+        <div className="nav-auth">
+          {user ? (
+            <>
+              {/* ADMIN BUTTON */}
+              {user.isAdmin && (
+                <Link to="/admin/dashboard" className="btn btn-profile">Admin</Link>
+              )}
+              <Link to="/profile" className="btn btn-profile">Profile</Link>
+              <button onClick={handleLogout} className="btn btn-logout">Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="btn btn-secondary">Login</Link>
+              <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+            </>
+          )}
+        </div>
+      </div>
+    </nav>
   );
 };
 

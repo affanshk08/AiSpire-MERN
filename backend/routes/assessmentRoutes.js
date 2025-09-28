@@ -1,13 +1,14 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const {
+import {
   getAssessments,
-  takeAssessment,
-  getAssessmentResult,
-} = require('../controllers/assessmentController');
-const { protect } = require('../middleware/authMiddleware');
+  getAssessmentById,
+  submitAssessment,
+} from '../controllers/assessmentController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
-router.route('/').get(protect, getAssessments).post(protect, takeAssessment);
-router.get('/:id/result', protect, getAssessmentResult);
+router.route('/').get(getAssessments);
+router.route('/:id').get(getAssessmentById);
+router.route('/:id/submit').post(protect, submitAssessment);
 
-module.exports = router;
+export default router;

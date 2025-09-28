@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const appointmentSchema = new mongoose.Schema({
   user: {
@@ -7,20 +7,25 @@ const appointmentSchema = new mongoose.Schema({
     required: true,
   },
   counselor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Assuming counselors are also users with a specific role
+    type: String,
     required: true,
   },
-  appointmentDate: {
+  date: {
     type: Date,
     required: true,
   },
+  time: {
+    type: String,
+    required: true
+  },
   status: {
     type: String,
-    enum: ['scheduled', 'completed', 'cancelled'],
-    default: 'scheduled',
+    enum: ['Confirmed', 'scheduled', 'completed', 'cancelled'],
+    default: 'Confirmed',
   },
   notes: String,
 });
 
-module.exports = mongoose.model('Appointment', appointmentSchema);
+const Appointment = mongoose.model('Appointment', appointmentSchema);
+// Named export ka istemal karein
+export { Appointment };

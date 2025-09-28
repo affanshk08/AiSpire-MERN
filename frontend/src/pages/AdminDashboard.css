@@ -1,0 +1,40 @@
+.admin-dashboard .admin-section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+}
+
+.admin-dashboard h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e5e5e5;
+  padding-bottom: 1rem;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.admin-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-dashboard th,
+.admin-dashboard td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+.admin-dashboard th {
+  background-color: #e9ecef;
+  font-weight: 600;
+}
+
+.admin-dashboard tbody tr:hover {
+  background-color: #f1f1f1;
+}

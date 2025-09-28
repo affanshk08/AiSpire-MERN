@@ -1,40 +1,44 @@
 import axios from 'axios';
 
-// This URL uses the proxy in package.json to talk to your Node.js backend
 const API_URL = '/api/auth/';
 
 // Register user
 const register = async (userData) => {
-  const response = await axios.post(API_URL + 'register', userData);
-
-  if (response.data) {
-    localStorage.setItem('user', JSON.stringify(response.data));
+  try {
+    const response = await axios.post(API_URL + 'register', userData);
+    if (response.data) {
+      localStorage.setItem('user', JSON.stringify(response.data));
+    }
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return Promise.reject(new Error(message));
   }
-
-  return response.data;
 };
 
 // Login user
 const login = async (userData) => {
+  try {
     const response = await axios.post(API_URL + 'login', userData);
-
     if (response.data) {
-        localStorage.setItem('user', JSON.stringify(response.data));
+      localStorage.setItem('user', JSON.stringify(response.data));
     }
-
     return response.data;
-};
-
-
-// Logout user
-const logout = () => {
-  localStorage.removeItem('user');
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return Promise.reject(new Error(message));
+  }
 };
 
 const authService = {
   register,
   login,
-  logout,
 };
 
 export default authService;

@@ -1,38 +1,40 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
-const user = JSON.parse(localStorage.getItem('user'));
-
-const initialState = {
-  user: user ? user : null,
-  isAuthenticated: user ? true : false,
-};
-
-export const AuthContext = createContext(initialState);
-
-export const authReducer = (state, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return { ...state, user: action.payload, isAuthenticated: true };
-    case 'LOGOUT':
-      return { ...state, user: null, isAuthenticated: false };
-    default:
-      return state;
-  }
-};
+export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  // Use 'undefined' to represent the initial loading state
+  const [user, setUser] = useState(undefined);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    // On app start, check for user in localStorage
+    const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      dispatch({ type: 'LOGIN', payload: storedUser });
+      setUser(JSON.parse(storedUser));
+    } else {
+      // If no user, set to null (meaning not logged in)
+      setUser(null);
     }
   }, []);
 
+  const login = (userData) => {
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUser(userData);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+  };
+
+  // The value now includes the logout function and the reliable user state
+  const value = { user, login, logout };
+
+  // Render children only after the user state has been determined
+  // This prevents pages from loading before we know if the user is logged in
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
-      {children}
+    <AuthContext.Provider value={value}>
+      {user !== undefined ? children : <div>Loading Application...</div>}
     </AuthContext.Provider>
   );
 };

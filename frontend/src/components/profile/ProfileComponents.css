@@ -1,0 +1,45 @@
+.profile-section {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e5e5e5;
+}
+
+.profile-section h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.item-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.item-title {
+    font-weight: 500;
+}
+
+.item-date,
+.item-status {
+    color: var(--grey);
+    font-size: 0.9rem;
+    background-color: var(--off-white);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+}

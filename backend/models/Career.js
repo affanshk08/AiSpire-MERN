@@ -1,26 +1,14 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const careerSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  averageSalary: {
-    type: Number,
-    required: true,
-  },
-  requiredEducation: {
-    type: String,
-    required: true,
-  },
-  skills: {
-    type: [String],
-    required: true,
-  },
+const careerSchema = mongoose.Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  averageSalary: { type: Number, required: true },
+  educationRequired: { type: String, required: true },
+  skills: [String],
+  relatedFields: [String],
 });
 
-module.exports = mongoose.model('Career', careerSchema);
+const Career = mongoose.model('Career', careerSchema);
+// Default export ka istemal karein
+export default Career;

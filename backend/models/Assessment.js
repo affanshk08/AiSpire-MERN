@@ -1,37 +1,16 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const assessmentSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
-  assessmentType: {
-    type: String,
-    required: true,
-    enum: ['personality', 'interest', 'skills'],
-  },
-  questions: [
-    {
-      questionText: String,
-      options: [String],
-      correctAnswer: String,
-    },
-  ],
-  answers: [
-    {
-      questionId: mongoose.Schema.Types.ObjectId,
-      selectedOption: String,
-    },
-  ],
-  results: {
-    type: Map,
-    of: String,
-  },
-  completedAt: {
-    type: Date,
-    default: Date.now,
-  },
+const questionSchema = mongoose.Schema({
+  text: { type: String, required: true },
+  options: [{ text: String, score: Number }],
 });
 
-module.exports = mongoose.model('Assessment', assessmentSchema);
+const assessmentSchema = mongoose.Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  questions: [questionSchema],
+});
+
+const Assessment = mongoose.model('Assessment', assessmentSchema);
+// Default export ka istemal karein
+export default Assessment;
