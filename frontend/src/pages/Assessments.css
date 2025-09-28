@@ -1,0 +1,92 @@
+.quiz-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: var(--off-white);
+  border-radius: 12px;
+  padding: 3rem;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Question Section */
+.question-count {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--grey);
+}
+
+.question-text {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.answer-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.option-button {
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: 1px solid #e5e5e5;
+  background-color: var(--white);
+  color: var(--black);
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+}
+
+.option-button:hover {
+  background-color: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+/* Result Section */
+.result-section {
+  text-align: center;
+}
+
+.result-section h2 {
+  color: var(--grey);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.suggested-career {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.result-description {
+  font-size: 1.1rem;
+  color: var(--grey);
+  max-width: 500px;
+  margin: 0 auto 2rem;
+}
+
+.btn-restart {
+  font-size: 1.1rem;
+  font-weight: 500;
+  background-color: transparent;
+  color: var(--black);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--black);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-restart:hover {
+  background-color: var(--black);
+  color: var(--white);
+}

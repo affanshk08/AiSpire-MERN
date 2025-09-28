@@ -1,0 +1,53 @@
+.career-card {
+  background-color: var(--off-white);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.career-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-description {
+  color: var(--grey);
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.card-salary {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.card-link {
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--black);
+  color: var(--black);
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+.card-link:hover {
+  background-color: var(--black);
+  color: var(--white);
+}

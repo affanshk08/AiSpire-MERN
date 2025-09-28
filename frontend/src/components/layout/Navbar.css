@@ -1,0 +1,78 @@
+.header {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--off-white);
+  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  font-weight: 500;
+}
+
+.nav-menu a {
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--grey);
+}
+
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 1rem;
+}
+
+.login-button {
+  background: transparent;
+  color: var(--black);
+}
+
+.signup-button {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.nav-button:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-auth .login-button {
+    display: none;
+  }
+}

@@ -1,0 +1,31 @@
+.profile-details {
+    max-width: 700px;
+    margin: 2rem auto;
+    background-color: var(--off-white);
+    border-radius: 12px;
+    padding: 1.5rem 2.5rem;
+    border: 1px solid #e5e5e5;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: var(--grey);
+    font-size: 1rem;
+}
+
+.detail-value {
+    font-weight: 700;
+    font-size: 1.1rem;
+}

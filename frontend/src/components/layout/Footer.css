@@ -1,0 +1,31 @@
+.footer {
+  background-color: var(--black);
+  color: var(--grey);
+  padding: 2rem 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
